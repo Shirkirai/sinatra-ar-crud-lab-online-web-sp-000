@@ -28,8 +28,8 @@ class ApplicationController < Sinatra::Base
 #"show" erb page.
     post "/articles" do
         @article = Article.new(params)
-        redirect to "articles/#{@article.id}"
-    end  
+        redirect to "articles/:#{@article.id}"
+    end
 #read
   get "/articles/:id" do
       @article = Article.find(params[:id])
