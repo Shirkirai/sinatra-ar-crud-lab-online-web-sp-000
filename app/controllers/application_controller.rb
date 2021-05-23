@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 #new
     get "/articles/new" do
-        redirect to "articles/#{@article.id}"
+        @article = Article.new
         erb :new
     end
 #create; once this controller creates a new article based on the params of user input
