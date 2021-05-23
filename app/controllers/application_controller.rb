@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
         erb :new
     end
 #create; once this controller creates a new article based on the params of user input
-#it will redirect to the controller above: "get "/articles/:id" do" in order to render the
+#it will redirect to the controller below: "get "/articles/:id" do" in order to render the
 #"show" erb page.
     post "/articles" do
         @article = Article.create(params)
