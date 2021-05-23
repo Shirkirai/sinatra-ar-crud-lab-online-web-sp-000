@@ -13,23 +13,36 @@ class ApplicationController < Sinatra::Base
   end
 
 #read
+#user starts here; opening page; shows all and every article
   get "/articles" do
       @articles = Article.all
       erb :index
   end
-
+#new
+    get "/articles/new" do
+        redirect to "articles/#{@article.id}"
+        erb :new
+    end
+#create; once this controller creates a new article based on the params of user input
+#it will redirect to the controller above: "get "/articles/:id" do" in order to render the
+#"show" erb page.
+    post "/articles" do
+        @article = Article.new(params)
+        redirect to "articles/#{@article.id}"
+    end  
+#read
   get "/articles/:id" do
       @article = Article.find(params[:id])
       erb :show
   end
-#new
-    get "/articles/new" do
-        @article = Article.find(params[:id])
-        erb :new
+
+#edit
+    get '/articles/:id/edit' do
+      @article = Article.find(params[:id])
+      erb :edit
     end
-#create
-    post "/articles" do
-        @article = Article.new(params)
-        redirect to "articles/#{@article.id}"
+
+    patch '/articles/:id' do
+      redirect to "articles/#{@article.id}"
     end
 end
