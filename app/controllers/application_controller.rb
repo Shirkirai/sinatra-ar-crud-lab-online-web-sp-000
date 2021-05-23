@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
 #it will redirect to the controller above: "get "/articles/:id" do" in order to render the
 #"show" erb page.
     post "/articles" do
-        @article = Article.new(params)
+        @article = Article.create(params)
         redirect to "articles/:#{@article.id}"
     end
 #read
