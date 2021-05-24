@@ -1,7 +1,7 @@
 <%#This view should contain a form to update a specific article--similar to the form you made for a new article, but the fields should be pre-populated with the existing title and content of the article.%>
 
 
-<form action="/articles" method="post">
+<form action="/articles/<%=@article.id%>" method="post">
   <ul>
     <li>
       <label for="title"><%=@article.title%></label>
