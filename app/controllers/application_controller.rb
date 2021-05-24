@@ -1,3 +1,4 @@
+
 require_relative '../../config/environment'
 
 class ApplicationController < Sinatra::Base
@@ -8,50 +9,42 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    redirect to "/articles"
+      redirect to "/articles"
   end
 
-  # index
+#read
+#user starts here; opening page; shows all and every article
   get "/articles" do
-    @articles = Article.all
-    erb :index
+      @articles = Article.all
+      erb :index
   end
-
-  # new
-  get "/articles/new" do
-    @article = Article.new
-    erb :new
-  end
-
-  # create
-  post "/articles" do
-    @article = Article.create(params)
-    redirect to "/articles/#{ @article.id }"
-  end
-
-  # show
+#new
+    get "/articles/new" do
+        @article = Article.new
+        erb :new
+    end
+#create; once this controller creates a new article based on the params of user input
+#it will redirect to the controller below: "get "/articles/:id" do" in order to render the
+#"show" erb page.
+    post "/articles" do
+        @article = Article.create(params)
+        redirect to "/articles/#{@article.id}"
+    end
+#read
   get "/articles/:id" do
-    @article = Article.find(params[:id])
-    erb :show
+      @article = Article.find(params[:id])
+      erb :show
   end
 
-  # edit
-  get "/articles/:id/edit" do
-    @article = Article.find(params[:id])
-    erb :edit
-  end
+#edit
+    get '/articles/:id/edit' do
+      @article = Article.find(params[:id])
+      erb :edit
+    end
 
-  # update
-  patch "/articles/:id" do
-    @article = Article.find(params[:id])
-    @article.update(params[:article])
-    redirect to "/articles/#{ @article.id }"
-  end
-
-  #destroy
-  delete "/articles/:id" do
-    Article.destroy(params[:id])
-    redirect to "/articles"
-  end
-
+    patch '/articles/:id' do
+        @article = Article.find(params[:id])
+        @article.update(params[:article])
+        redirect to "/articles/#{@article.id}"
+    end
 end
