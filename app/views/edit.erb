@@ -2,6 +2,7 @@
 
 
 <form action="/articles/<%=@article.id%>" method="post">
+    <input id="hidden" type="hidden" name="post" value="PATCH">
   <ul>
     <li>
       <label for="title">Title</label>
@@ -15,5 +16,5 @@
     </li>
   </ul>
   <input type="submit" />
-  <input id="hidden" type="hidden" name="post" value="PATCH">
+
 </form>
