@@ -11,7 +11,10 @@ class ApplicationController < Sinatra::Base
   get '/' do
       redirect to "/articles"
   end
-
+  get "/articles/new" do
+      @article = Article.new
+      erb :new
+  end
 #read
 #user starts here; opening page; shows all and every article
   get "/articles" do
@@ -19,10 +22,7 @@ class ApplicationController < Sinatra::Base
       erb :index
   end
 #new
-    get "/articles/new" do
-        @article = Article.new
-        erb :new
-    end
+
 #create; once this controller creates a new article based on the params of user input
 #it will redirect to the controller below: "get "/articles/:id" do" in order to render the
 #"show" erb page.
